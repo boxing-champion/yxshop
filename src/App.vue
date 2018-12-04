@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <router-view/>
+    <foot-guide></foot-guide>
   </div>
 </template>
 
 <script>
+  import footGuide from "./components/footGuide/footGuide"
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    footGuide
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped lang="stylus" rel="stylesheet/stylus">
+  #app
+    width 100%
+    height 100%
+    overflow hidden
 </style>
