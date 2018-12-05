@@ -58,7 +58,7 @@
   .footer_guide
     top-border-1px(#e4e4e4)
     position fixed
-    z-index 100
+    z-index 99999
     left 0
     right 0
     bottom 0
