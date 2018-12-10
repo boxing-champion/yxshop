@@ -1,21 +1,13 @@
-# v_yxshop
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#day01
+    拆分组件:
+        一共五个一级路由
+    布置静态页面:
+        基本ok
+#day02
+    vuex:
+        dispatch-->actions-->mutations-->state
+    mock数据模仿发送ajax请求:
+        拦截ajax请求
+    动态数据:
+        轮播图以及scroll的问题:监视数据(watch)后在$nextScroll中注册
+        填写动态数据时的问题:多层表达式需要在外面监视数据是否来了(v-if(一个两层表达式即可))

@@ -27,57 +27,36 @@
     </div>
     <div class="m-main-tab">
       <div class="u-scroll-wrapper">
-        <a href="javascript:;" class="item active">推荐</a>
-        <a href="javascript:;" class="item">达人</a>
-        <a href="javascript:;" class="item">上新</a>
-        <a href="javascript:;" class="item">晒单</a>
-        <a href="javascript:;" class="item">HOME</a>
+        <a :href="`/#/identifying?tab=${tab.tabId}`" class="item" v-for="(tab,index) of tabs" :class="{active:$refs.indent.currentIndex === tab.tabId}"
+           :key="index">{{tab.tabName}}</a>
       </div>
     </div>
     <Split/>
-    <div class="m-main">
-        <div class="m-main-content">
-          <div class="m-tpls-top">
-            <a href="javescript:;">
-              <div class="u-pic-top">
-                <img src="https://yanxuan.nosdn.127.net/b7db4d98e47a94adda8b4d61bc5f4af0.jpg?imageView&quality=65&thumbnail=690y376" alt="">
-              </div>
-            </a>
-          </div>
-          <Split/>
-          <ul class="m-tpls m-tpls-picker">
-            <li>
-              <a href="javescript:;" class="u-flexbox">
-                <div class="info">
-                  <div class="u-name">
-                    <span class="ava">
-                      <img src="https://yanxuan.nosdn.127.net/6311ec4540ebe620ddcd49b10e08a8f6.png?imageView&quality=65&thumbnail=56y56" alt="">
-                    </span>
-                    <span>服装组：小服</span>
-                  </div>
-                  <div class="title">双11忘买羽绒服？没关系，还有双12！</div>
-                  <div class="desc">双12时髦保暖羽绒服低至6折</div>
-                  <div class="u-rcount">
-                    <i class="ico iconfont icon-yanjing"></i>
-                    <span>15.5k人看过</span>
-                  </div>
-                </div>
-                <div class="u-pic">
-                  <img src="https://yanxuan.nosdn.127.net/affbdf2116ad47ae5fc904b02ab145f6.jpg?imageView&quality=65&thumbnail=272y272" alt="">
-                </div>
-              </a>
-
-            </li>
-          </ul>
-          <Split/>
-        </div>
-    </div>
+    <indentMain ref="indent"/>
   </div>
 </template>
 
 <script>
+  import {mapState} from "vuex"
+  import indentMain from "../../components/indentMain/indentMain"
+
   export default {
-    name: "identifying"
+    name: "identifying",
+    data() {
+      return {
+
+      }
+    },
+    computed: {
+      ...mapState(["tabs"]),
+    },
+    mounted() {
+      this.$store.dispatch("getTabs")
+
+    },
+    components: {
+      indentMain
+    }
   }
 </script>
 
@@ -85,7 +64,7 @@
   .m-hwrapper
     width: 100%
     position: relative;
-    height:100px
+    height: 100px
     .psc-g-hd
       position: fixed !important;
       left: 0;
@@ -153,6 +132,7 @@
                   display block
                   margin-top: 25px
                   font-size 50px
+
   .m-main-tab
     border-bottom: .01rem solid #d9d9d9;
     width 100%;
@@ -164,7 +144,7 @@
       position: absolute;
       left: 0;
       z-index: 20;
-      top:100px
+      top: 100px
       zoom: 1
       .item
         display: inline-block;
@@ -178,99 +158,5 @@
         &.active
           color: #B4282D;
           border-bottom: .04rem solid #B4282D;
-  .m-main
-    width: 100%
-    height 100%
-    .m-main-content
-      zoom: 1
-      .m-tpls-top
-        width: 100%;
-        background: #fff;
-        margin: .2rem 0;
-        padding: .36rem .3rem;
-        >a
-          zoom: 1
-          .u-pic-top
-            width 100%
-            height: 376px;
-            position: relative;
-            overflow: hidden;
-            border-radius: .08rem;
-            >img
-              width: 100%
-              height 100%
-              display block
-    .m-tpls
-      width: 100%;
-      background: #fff;
-      margin: .2rem 0;
-      padding: .36rem .3rem;
-      &.m-tpls-picker
-        position: relative;
-        padding: .32rem .3rem;
-        .u-flexbox
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-between;
-          .info
-            position relative
-            width: 400px
-            height 272px
-            .u-name
-              font-size: .28rem;
-              color: #333;
-              line-height: .36rem;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              .ava
-                display inline-block
-                width: 56px;
-                height: 56px;
-                overflow: hidden;
-                border-radius: 50%;
-                box-sizing: border-box;
-                border: .01rem solid #d9d9d9;
-                margin-right: .12rem;
-                >img
-                  width: 100%;
-                  height: 100%;
-              >span
-                display: inline-block;
-                vertical-align: middle;
-            .title
-              width: 100%;
-              font-size: 36px;
-              color: #333;
-              line-height: .6rem;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: -webkit-box;
-              padding-top: .32rem;
-              font-family: PingFangSC-Regular;
-            .desc
-              width: 100%;
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              font-size: 28px;
-              line-height: 40px;
-              padding-top: 14px;
-              color: #7f7f7f;
-            .u-rcount
-              font-size: 22px;
-              color: #999;
-              line-height: 22px;
-              position: absolute;
-              bottom: 0
-              .ico
-                font-size 28px
-
-          .u-pic
-            width: 272px;
-            height: 272px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
 
 </style>

@@ -2,7 +2,7 @@
 
   <div style="width: 100%;height: 100%">
     <!--头部开始-->
-    <header class="m-indexHd">
+    <header class="m-indexHd" v-if="categoryHotSellModule.categoryList">
       <div class="line">
         <a class="logo" href="/"></a>
         <div class="m-topSearchIpt ipt">
@@ -14,17 +14,10 @@
       <div class="tabWrap">
         <div class="m-tabs">
           <div class="inner" style="position:relative;height:100%;width:100%;overflow:hidden;">
-            <div class="list" ref="list">
-              <div class="tab active"><span class="txt">推荐</span></div>
-              <div class="tab"><span class="txt">居家</span></div>
-              <div class="tab"><span class="txt">鞋包配饰</span></div>
-              <div class="tab"><span class="txt">居家</span></div>
-              <div class="tab"><span class="txt">鞋包配饰</span></div>
-              <div class="tab"><span class="txt">居家</span></div>
-              <div class="tab"><span class="txt">鞋包配饰</span></div>
-              <div class="tab"><span class="txt">鞋包配饰</span></div>
-              <div class="tab"><span class="txt">居家</span></div>
-              <div class="tab"><span class="txt">鞋包配饰</span></div>
+            <div class="list" ref="ul">
+              <div ref="li" class="tab active" v-for="(hea,index) of categoryHotSellModule.categoryList[1]" :key="index">
+                <span class="txt">{{hea.extra.operationResource.categoryName}}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -39,36 +32,28 @@
           <!--轮播图开始-->
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div class="swiper-slide"><img style="width: 100%; height: 100%"
-                                             src="http://pic164.nipic.com/file/20180507/26785037_031239613036_2.jpg"/>
+              <div class="swiper-slide" v-for="(fl,index) of focusList" :key="index">
+                <img style="width: 100%; height: 100%" :src="fl.picUrl"/>
               </div>
-              <div class="swiper-slide"><img style="width: 100%; height: 100%"
-                                             src="http://up.enterdesk.com/edpic_source/0e/60/00/0e600029c974b55fbfe8d693b487d8dd.jpg"/>
-              </div>
-              <div class="swiper-slide"><img style="width: 100%; height: 100%"
-                                             src="http://imgsrc.baidu.com/imgad/pic/item/9c16fdfaaf51f3de3c1a72499feef01f3a297977.jpg"/>
-              </div>
-              <div class="swiper-slide"><img style="width: 100%; height: 100%"
-                                             src="http://pic40.photophoto.cn/20160701/1155116870045975_b.jpg"/></div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
           <!--轮播图结束-->
 
           <!--low开始-->
-          <div class="m-indexServicePolicy active">
+          <div class="m-indexServicePolicy active" v-if="policyDescList[0]">
             <ul class="g-grow">
               <li class="item">
                 <i class="iconfont icon-xuan"></i>
-                <span class="text">网易自营品牌</span>
+                <span class="text">{{policyDescList[0].desc}}</span>
               </li>
               <li class="item">
                 <i class="iconfont icon-xuan">
-                </i><span class="text">30天无忧退货</span>
+                </i><span class="text">{{policyDescList[1].desc}}</span>
               </li>
               <li class="item">
                 <i class="iconfont icon-xuan"></i>
-                <span class="text">48小时快速退款</span>
+                <span class="text">{{policyDescList[2].desc}}</span>
               </li>
             </ul>
           </div>
@@ -81,65 +66,12 @@
             <div class="m-kingkongCarousel">
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                  <a href="javascript:" class="link_to_shop">
+                  <a href="javascript:;" class="link_to_shop" v-for="(king,index) of kingKongModule.kingKongList"
+                     :key="index">
                     <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
+                      <img :src="king.picUrl">
                     </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
-                  </a>
-                  <a href="javascript:" class="link_to_shop">
-                    <div class="kingkong-item">
-                      <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png">
-                    </div>
-                    <span>居家</span>
+                    <span>{{king.text}}</span>
                   </a>
                 </div>
               </div>
@@ -147,31 +79,31 @@
             <!--one结束-->
 
             <!--two开始-->
-            <div class="m-indexBigPromotionModule">
+            <div class="m-indexBigPromotionModule" v-if="bigPromotionModule.bigPromotionList">
               <div class="m-lazyload">
-                <img class="onetwo" src="./images/shuang12.gif" alt="1212">
+                <img class="onetwo" :src="bigPromotionModule.bigPromotionList[0].data.contents[0].picUrl" alt="1212">
               </div>
             </div>
             <!--two结束-->
 
             <!--three开始-->
             <div class="m-Discount"
-                 style="background: url(https://yanxuan.nosdn.127.net/15435901919894506.png?imageView&crop=0_496_750_588) 100% 100%">
-              <div>
+                 style="background: url(https://yanxuan.nosdn.127.net/15435901919894506.png?imageView&crop=0_496_750_588)">
+              <div v-if="bigPromotionModule.bigPromotionList">
                 <a href="#" class="newSup">
                   <div>
-                    <img src="https://yanxuan.nosdn.127.net/15435902383484509.png" alt="hh">
+                    <img :src="bigPromotionModule.bigPromotionList[1].data.contents[0].picUrl" alt="hh">
                   </div>
                 </a>
                 <div class="promItem">
                   <a href="#">
                     <div class="m-lazyload">
-                      <img src="https://yanxuan.nosdn.127.net/15435902616394510.png" alt="one">
+                      <img :src="bigPromotionModule.bigPromotionList[1].data.contents[1].picUrl" alt="one">
                     </div>
                   </a>
                   <a href="#">
                     <div class="m-lazyload">
-                      <img src="https://yanxuan.nosdn.127.net/15438974429982991.png" alt="two">
+                      <img :src="bigPromotionModule.bigPromotionList[1].data.contents[2].picUrl" alt="two">
                     </div>
                   </a>
                 </div>
@@ -179,12 +111,12 @@
                      style="background:url(https://yanxuan.nosdn.127.net/15435901919894506.png?imageView&crop=0_1084_750_305);background-size:100% 100%;">
                   <a class="fast-one" href="#">
                     <div>
-                      <img src="https://yanxuan.nosdn.127.net/15438955793172733.png" alt="">
+                      <img :src="bigPromotionModule.bigPromotionList[2].data.contents[0].picUrl" alt="">
                     </div>
                   </a>
                   <a class="fast-two" href="#">
                     <div>
-                      <img src="https://yanxuan.nosdn.127.net/15435903918604513.png" alt="">
+                      <img :src="bigPromotionModule.bigPromotionList[2].data.contents[1].picUrl" alt="">
                     </div>
                   </a>
                 </div>
@@ -248,42 +180,26 @@
             <!--four结束-->
 
             <!--five开始-->
-            <div class="m-indexManufacturersSupplying">
+            <div class="m-indexManufacturersSupplying" v-if="tagList[0]">
               <div class="moduleTitle">
                 <div class="left"><span>品牌制造商直供</span></div>
                 <a class="right"><span>更多</span><i
                   class="iconfont u-icon icon-jiantouarrow484"></i></a></div>
-              <ul class="list" data-reactid=".0.4.3.1">
-                <a class="item" href="javascript:void(0)">
+              <ul class="list">
+                <a class="item" href="javascript:void(0)" v-for="(tag,index) of tagList"
+                   :style="`backgroundImage:url(${tag.picUrl})`">
                   <div class="cnt">
                     <h4 class="title">
-                      海外制造商
+                      {{tag.name}}
                     </h4>
-                    <div><span class="price"><span>9.9</span><span>元起</span></span><i class="newIcon">上新</i></div>
-                  </div>
-                </a>
-                <a class="item" href="javascript:void(0)">
-                  <div class="cnt">
-                    <h4 class="title">
-                      CK制造商
-                    </h4>
-                    <div><span class="price"><span>9.9</span><span>元起</span></span><i class="newIcon">上新</i></div>
-                  </div>
-                </a>
-                <a class="item" href="javascript:void(0)">
-                  <div class="cnt">
-                    <h4 class="title">
-                      新秀丽制造商
-                    </h4>
-                    <div><span class="price"><span>9.9</span><span>元起</span></span><i class="newIcon">上新</i></div>
-                  </div>
-                </a>
-                <a class="item" href="javascript:void(0)">
-                  <div class="cnt">
-                    <h4 class="title">
-                      MUJI制造商
-                    </h4>
-                    <div><span class="price"><span>9.9</span><span>元起</span></span><i class="newIcon">上新</i></div>
+                    <div>
+                      <span class="price">
+                        <span>{{tag.floorPrice}}</span>
+                        <span>元起</span>
+                      </span>
+                      <i class="newIcon" v-if="tag.newOnShelf" :style="tag.newOnShelf ? `backgroundColor:#cbb693` : ``">{{tag.newOnShelf
+                        ? "上新" : ""}}</i>
+                    </div>
                   </div>
                 </a>
               </ul>
@@ -291,186 +207,90 @@
             <!--five结束-->
 
             <!--six开始-->
-            <div class="m-categoryHotSellModule">
+            <div class="m-categoryHotSellModule" v-if="categoryHotSellModule.title">
               <div class="moduleTitle">
-                <div class="left"><span>类目热销榜</span></div>
+                <div class="left"><span>{{categoryHotSellModule.title}}</span></div>
               </div>
 
               <div class="content">
-                <div class="line1">
+                <div class="line1" v-for="(hot,index) of categoryHotSellModule.categoryList[0]" :key="index">
                   <a class="item-big item-1" href="javascript:void(0)">
                     <div>
-                      <div class="name"><span class="txt">服装榜</span></div>
+                      <div class="name"><span class="txt">{{hot.categoryName}}</span></div>
                     </div>
                     <div class="imgWrap">
-                      <div class="m-lazyload  m-lazyload-loaded"><img
-                        src="http://yanxuan.nosdn.127.net/6a690105c3f3dd2806264f3cc4aee54c.png?imageView&amp;quality=65&amp;thumbnail=200x200">
+                      <div class="m-lazyload  m-lazyload-loaded"><img :src="hot.picUrl">
+                      </div>
+                    </div>
+                  </a>
+                </div>
+
+
+                <div class="line2">
+                  <a class="item" href="javascript:void(0)" v-for="(hot,index) of categoryHotSellModule.categoryList[1]"
+                     :key="index">
+                    <div class="name">{{hot.categoryName}}</div>
+                    <div class="imgWrap">
+                      <div class="m-lazyload  m-lazyload-loaded">
+                        <img :src="hot.picUrl">
                       </div>
                     </div>
                   </a>
 
-                  <div class="line1">
-                    <a class="item-big item-1" href="javascript:void(0)">
-                      <div>
-                        <div class="name"><span class="txt">服装榜</span></div>
-                      </div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded"><img
-                          src="http://yanxuan.nosdn.127.net/6a690105c3f3dd2806264f3cc4aee54c.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-
-
-                  <div class="line2">
-                    <a class="item" href="javascript:void(0)">
-                      <div class="name">电器榜</div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded">
-                          <img
-                            src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                    <a class="item" href="javascript:void(0)">
-                      <div class="name">电器榜</div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded">
-                          <img
-                            src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                    <a class="item" href="javascript:void(0)">
-                      <div class="name">电器榜</div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded">
-                          <img
-                            src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                    <a class="item" href="javascript:void(0)">
-                      <div class="name">电器榜</div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded">
-                          <img
-                            src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                    <a class="item" href="javascript:void(0)">
-                      <div class="name">电器榜</div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded">
-                          <img
-                            src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                    <a class="item" href="javascript:void(0)">
-                      <div class="name">电器榜</div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded">
-                          <img
-                            src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                    <a class="item" href="javascript:void(0)">
-                      <div class="name">电器榜</div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded">
-                          <img
-                            src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                    <a class="item" href="javascript:void(0)">
-                      <div class="name">电器榜</div>
-                      <div class="imgWrap">
-                        <div class="m-lazyload  m-lazyload-loaded">
-                          <img
-                            src="http://yanxuan.nosdn.127.net/362a8249b48d91d99604680b5471b507.png?imageView&amp;quality=65&amp;thumbnail=200x200">
-                        </div>
-                      </div>
-                    </a>
-                  </div>
                 </div>
+
               </div>
             </div>
             <!--six结束-->
 
             <!--seven开始-->
-            <div class="m-popularItemModule">
+            <div class="m-popularItemModule" v-if="popularItemList[0]">
               <div class="moduleTitle">
                 <div class="left"><span>人气推荐</span></div>
                 <a class="right"><span>更多</span><i class="iconfont u-icon icon-jiantouarrow484"></i></a></div>
               <a class="spItem">
                 <div class="wraper">
-                  <div class="m-lazyload  m-lazyload-loaded"><img
-                    src="http://yanxuan.nosdn.127.net/06e5818658707bc182acabe92cae3d34.png?imageView&amp;quality=65&amp;thumbnail=280x280">
+                  <div class="m-lazyload  m-lazyload-loaded"><img :src="popularItemList[0][0].listPicUrl">
                   </div>
                 </div>
                 <div class="floor">
                   <div class="tagWraper"><span class="tag-status coupon">券</span></div>
-                  <div class="name">30包 谷风一木软抽面巾纸囤货装</div>
-                  <div class="desc">环保取材，安全天然更亲肤</div>
-                  <div class="price"><span>¥</span><span>75</span></div>
+                  <div class="name">{{popularItemList[0][0].name}}</div>
+                  <div class="desc">{{popularItemList[0][0].simpleDesc}}</div>
+                  <div class="price"><span>¥</span><span>{{popularItemList[0][0].retailPrice}}</span></div>
                 </div>
               </a>
               <div class="m-indexItem m-goodGrid">
                 <ul class="list">
-                  <li class="item"><a class="good" href="javascript:;">
-                    <div class="hd">
-                      <div class="wraper">
-                        <div class="m-lazyload  m-lazyload-loaded"><img
-                          class="swiper-lazy"
-                          src="http://yanxuan.nosdn.127.net/97719f5e6bbca639cdab6b50591c0689.png?imageView&amp;quality=65&amp;thumbnail=330x330">
+                  <li class="item" v-for="(popul,index) of popularItemList[1]">
+                    <a class="good" href="javascript:;">
+                      <div class="hd">
+                        <div class="wraper">
+                          <div class="m-lazyload  m-lazyload-loaded"><img
+                            :src="popul.listPicUrl">
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="name"><span>大牌特调 严选椒香鲜辣小龙...</span><span class="dynamicPrice"><span>&nbsp;</span><span
-                      class="priceInner"><span><span
-                    >¥</span><span>29.9</span></span></span></span>
-                    </div>
-                    <div class="newItemDesc">全新口味，大牌特调绿色汤汁</div>
-                    <div class="price"><span class="priceInner"><span><span>¥</span><span>29.9</span></span></span>
-                    </div>
-                    <div class="tagWraper"><p class="status gradientPrice">
-                      开天辟地价</p></div>
-                    <span></span></a></li>
-                  <li class="item"><a class="good" href="javascript:;">
-                    <div class="hd">
-                      <div class="wraper">
-                        <div class="m-lazyload  m-lazyload-loaded"><img
-                          class="swiper-lazy"
-                          src="http://yanxuan.nosdn.127.net/9ecf58a52dc6acf31b0c920cc0b3ff36.png?imageView&amp;quality=65&amp;thumbnail=330x330"
-                          style="display: block;"></div>
+                      <div class="name">
+                        <span>{{popul.name}}</span>
+                        <span class="dynamicPrice">
+                          <span>&nbsp;</span>
+                          <span class="priceInner">
+                            <span><span>¥</span><span>{{popul.retailPrice}}</span></span></span></span>
                       </div>
-                    </div>
-                    <div class="name"><span>保温电水壶</span></div>
-                    <div class="newItemDesc">健康饮水，唤醒新一天的活力</div>
-                    <div class="price"><span class="priceInner"><span><span>¥</span><span>99</span></span></span></div>
-                    <div class="tagWraper"><p class="status gradientPrice">限时购</p></div>
-                    <span></span></a></li>
-                  <li class="item"><a class="good" href="javascript:;">
-                    <div class="hd">
-                      <div class="wraper">
-                        <div class="m-lazyload  m-lazyload-loaded"><img
-                          class="swiper-lazy"
-                          src="http://yanxuan.nosdn.127.net/73a065d6fc8c32197b54421808c54788.png?imageView&amp;quality=65&amp;thumbnail=330x330"
-                          style="display: block;"></div>
+                      <div class="price">
+                        <span class="priceInner">
+                          <span>
+                            <span>¥</span>
+                            <span>{{popul.counterPrice}}</span>
+                          </span>
+                        </span>
                       </div>
-                    </div>
-                    <div class="name"><span>智能马桶盖</span><span class="dynamicPrice"><span>&nbsp;</span><span
-                      class="priceInner"><span><span
-                    >¥</span><span>1229</span></span></span></span>
-                    </div>
-                    <div class="tagWraper"><p class="status anniversary">爆品</p>
-                      <p class="status gradientPrice">明星特惠价</p></div>
-                    <span></span></a></li>
+                      <div class="tagWraper">
+                        <p class="status gradientPrice">{{popul.promTag}}</p>
+                      </div>
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -489,41 +309,62 @@
 
 <script>
   import BScroll from "better-scroll"
-  import Swiper from 'swiper';
-  import 'swiper/dist/css/swiper.min.css';
+  import Swiper from 'swiper'
+  import 'swiper/dist/css/swiper.min.css'
   import {mapState} from "vuex"
 
   export default {
     name: "home-page",
     mounted() {
-
       this.request()
-      this.$nextTick(() => {
-        this._bscroll()
-        this._lbt()
-      })
+    },
+    computed: {
+      ...mapState([
+        "kingKongModule",
+        "focusList",
+        "bigPromotionModule",
+        "policyDescList",
+        "tagList",
+        "popularItemList",
+        "categoryHotSellModule"
+      ])
     },
     methods: {
       _bscroll() {
-        new BScroll(".middle", {click: true})//整体滑动
-
-        const list = this.$refs.list
-        const liW = 88
-        const mr = 10
-        const count = 10
-        list.style.width = (liW + mr) * count - mr + "px"
+        const ul = this.$refs.ul
+        const li = this.$refs.li
+        const liW = Array.from(li).map((xx)=>{return xx.clientWidth}).reduce((a,b)=>{return a+b})
+        ul.style.width = liW + "px"
 
         new BScroll(".inner", {click: true, scrollX: true})//头部导航滑动
       },
       _lbt() {
-        new Swiper('.swiper-container', {
+        new Swiper('.swiper-container', {//轮播图
           loop: true,
           pagination: '.swiper-pagination',
-          autoplay: 1000,
+          autoplay: 2000,
         })
       },
-      request(){
+      request() {
         this.$store.dispatch("getKingKongModule")
+        this.$store.dispatch("getFocusList")
+        this.$store.dispatch("getBigPromotion")
+        this.$store.dispatch("getTagList")
+        this.$store.dispatch("getPopularItemList")
+        this.$store.dispatch("getPolicyDescList")
+        this.$store.dispatch("getCategoryHotSellModule")
+      }
+    },
+    watch:{
+      categoryHotSellModule(){
+        this.$nextTick(() => {
+          this._bscroll()
+        })
+      },
+      focusList(){
+        this.$nextTick(() => {
+          this._lbt()
+        })
       }
     }
   }
@@ -628,10 +469,10 @@
 
   .wrap
     background-color rgb(244, 244, 244)
-    padding-top: 150px
     width 100%
     height 100%
     .middle
+      margin-top: 150px
       height 100%
       width 100%
       .wrap-content
@@ -952,7 +793,6 @@
                 overflow: hidden;
                 background-color: #f4f4f4;
                 border-radius: .05333rem;
-                background-image url(http://yanxuan.nosdn.127.net/802ff06dd3ef161db046eeb8db6cb4be.jpg?imageView&thumbnail=343y260&enlarge=1)
                 background-size: 100% 100%;
                 .cnt
                   position: absolute;
@@ -971,6 +811,7 @@
                     line-height: .45333rem;
                     margin-bottom: .04rem;
                   .price
+                    position relative
                     color: #7F7F7F;
                     font-size: .32rem;
                   .newIcon
@@ -980,7 +821,6 @@
                     color: #fff;
                     line-height: .42667rem;
                     text-align: center;
-                    background: #CBB693;
                     border-radius: .05333rem;
                     margin-left: .13333rem;
           .m-categoryHotSellModule
@@ -1184,9 +1024,8 @@
                   height: auto;
                   overflow: hidden;
                   background-color: #fff;
-                  float: left;
                   position: relative;
-                  width: 2.88rem;
+                  width: 30%;
                   .good
                     width: 100%;
                     display block

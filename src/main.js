@@ -8,6 +8,11 @@ import 'lib-flexible/flexible'
 import Split from "./components/Split/Split"
 import "./mock/mockServer"
 
+import {Button} from 'mint-ui'
+// 注册全局组件
+Vue.component(Button.name, Button)
+
+
 Vue.config.productionTip = false
 Vue.component('Split', Split)
 

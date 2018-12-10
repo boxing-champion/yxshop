@@ -12,6 +12,9 @@ export default {
   components: {
     footGuide
   },
+  async mounted(){
+    this.$store.dispatch("getUser")
+  }
 
 
 }
